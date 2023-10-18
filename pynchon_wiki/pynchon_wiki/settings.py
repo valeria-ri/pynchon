@@ -25,7 +25,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sorl.thumbnail',
     'ckeditor',
-    'import_export'
+    'import_export',
+    'captcha'
 ]
 
 MIDDLEWARE = [
@@ -82,10 +83,11 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
         'height': 300,
-        'width': 800,
-        'forcePasteAsPlainText': True,
+        'width': 1200,
+        'autoParagraph': False,
+        # 'forcePasteAsPlainText': True,
         'allowedContent': True,
-        'extraPlugins': 'autogrow',
+        'extraPlugins': 'tabletools',
         'autoGrow_minHeight': 200,
         'autoGrow_maxHeight': 600,
         'autoGrow_bottomSpace': 50,
@@ -208,3 +210,6 @@ EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_RECIPIENT = os.getenv('EMAIL_RECIPIENT')
+
+CAPTCHA_IMAGE_SIZE = (150, 40)
+CAPTCHA_FONT_SIZE = 35
