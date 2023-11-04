@@ -1,15 +1,72 @@
 .characters {
   width: 100%;
-  max-width: 1440px;
+  /* max-width: 1440px;
   margin: 0 auto;
-  padding: 0 80px 40px;
+  padding: 0 80px 40px; */
+  padding: 0 0 40px;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.characters__text {
+  width: 100%;
+  max-width: 600px;
+  text-align: center;
+  margin: 0 0 16px;
+  box-sizing: border-box;
+}
+
+.characters__to-map-link {
+  width: max-content;
+  text-decoration: none;
+  color: #151515;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 140%;
+  display: inline-block;
+  padding: 10px 30px 10px 10px;
+  box-sizing: border-box;
+  margin: 0 auto 32px;
+  border-radius: 40px;
+  border: 1px solid #151515;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.characters__to-map-link::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 20px;
+  background-color: #842234;
+}
+
+.characters__to-map-link:hover {
+  background-color: #842234;
+  color: #F3F0EA;
+  border-color: #842234;
 }
 
 .characters__list-block {
   width: 100%;
-  overflow-x: scroll;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  box-sizing: border-box;
   margin-bottom: 32px;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.characters__list-block::-webkit-scrollbar {
+  display: none;
 }
 
 .characters__list {
@@ -17,8 +74,6 @@
   list-style: none;
   display: flex;
   justify-content: center;
-  /* flex-wrap: wrap; */
-  /* gap: 15px 30px; */
   gap: 30px;
   padding: 0;
   margin: 0;
@@ -62,19 +117,120 @@
   max-width: none;
   width: 100%;
   margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  overflow: hidden;
 }
 
-@media screen and (max-width: 1079px) {
-  .characters {
-    padding: 0 16px 40px;
+.map-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px 40px;
+  box-sizing: border-box;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 700px;
+  margin-bottom: 40px;
+}
+
+/* .characters #image-container {
+  background-color: #151515;
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.characters #image-container img {
+  max-height: 100%;
+  min-width: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+} */
+
+.characters #image-container {
+  background-color: #151515;
+  width: 100%;
+  height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.characters #image-container img {
+  min-width: 100%;
+  min-height: 100%;
+  /* max-width: none;
+  max-height: none; */
+  object-fit: contain;
+}
+
+.characters__zoom {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 40px;
+}
+
+.characters__zoom button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #842234;
+  color: #f8f6f3;
+  font-size: 2rem;
+  line-height: 1;
+  font-weight: 400;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.characters__description {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto 40px;
+  padding: 0 80px;
+  box-sizing: border-box;
+}
+
+.characters__table {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 80px;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+
+.characters__table .table_characters_chronology {
+  /* width: 100%; */
+  min-width: 900px;
+}
+
+@media screen and (max-width: 768px) {
+  .characters__text, .characters__list-block, .characters__description, .characters__table, .map-container {
+    padding: 0 16px;
   }
 
-  .characters__table {
-    width: 100%;
-    overflow: scroll;
+  .characters #image-container {
+    height: 70vh;
   }
 
-  .characters__table .table_characters_chronology {
-    min-width: 900px;
+  .map-container iframe {
+    height: 600px;
   }
 }
