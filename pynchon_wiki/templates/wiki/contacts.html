@@ -1,34 +1,89 @@
 {% extends 'base.html' %}
 {% block title %}
-  Контакты
+Контакты
 {% endblock %}
 {% block content %}
-  <section class="about-nav">
-    <ul class="about-nav__links">
-      <li class="about-nav__link-item">
-        <a class="about-nav__link body-text-l" href="{% url 'wiki:about-project' %}">Описание</a>
-      </li>
-      <li class="about-nav__link-item">
-        <a class="about-nav__link body-text-l" href="{% url 'wiki:creators' %}">Авторы</a>
-      </li>
-      <li class="about-nav__link-item about-nav__link-item_active">
-        <a class="about-nav__link body-text-l" href="{% url 'wiki:contacts' %}">Контакты</a>
-      </li>
-    </ul>
-    <h1 class="about-nav__title chapter-title">Как с нами связаться</h1>
-  </section>
-  <section class="contact">
-    <p class="contact__text body-text">Если вы хотите сообщить нам об ошибке или неточности в тексте, пожалуйста, пишите нам об этом</p>
-    <form class="contact__form" method='POST' enctype="multipart/form-data">
-      {% csrf_token %}
-      <input class="contact__input body-text" type="text" name="username" placeholder="Имя">
-      <input class="contact__input body-text" type="email" name="email" placeholder="Адрес электронной почты">
-      <textarea class="contact__input contact__input_textarea body-text" name="message" placeholder="Комментарий"></textarea>
-      <div class="contact__actions">
-        <label for="file-load" class="custom-file-upload"></label>
-        <input id="file-load" class="contact__file-btn" type="file" name="file">
-        <button class="contact__submit" type="submit">Отправить</button>
-      </div>
-    </form>
-  </section>
+<section class="about-nav">
+  <ul class="about-nav__links">
+    <li class="about-nav__link-item">
+      <a class="about-nav__link body-text-l" href="{% url 'wiki:about-project' %}">Описание</a>
+    </li>
+    <li class="about-nav__link-item">
+      <a class="about-nav__link body-text-l" href="{% url 'wiki:creators' %}">Авторы</a>
+    </li>
+    <li class="about-nav__link-item about-nav__link-item_active">
+      <a class="about-nav__link body-text-l" href="{% url 'wiki:contacts' %}">Контакты</a>
+    </li>
+  </ul>
+  <h1 class="about-nav__title chapter-title">Как с нами связаться</h1>
+</section>
+<section class="contact">
+  <p class="contact__text body-text">Если вы хотите сообщить нам об ошибке или неточности в тексте, пожалуйста, пишите
+    нам об этом</p>
+  <form class="contact__form" method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <input class="contact__input body-text" type="text" name="username" placeholder="Имя">
+    <input class="contact__input body-text" type="email" name="email" placeholder="Адрес электронной почты">
+    <textarea class="contact__input contact__input_textarea body-text" name="message"
+      placeholder="Комментарий"></textarea>
+    <div class="contact__preview-box"></div>
+    <p class="contact__captcha-text body-text">Введите текст с картинки:</p>
+    <!-- <div class="captcha">
+        {{ form.captcha }}
+        {% if form.errors %}
+          {% include "includes/form_template_errors.html" %}"
+        {% endif %}
+      </div> -->
+    <div class="captcha">
+      <img src="../../static/img/captcha.png" alt="captcha" class="captcha">
+      <input type="hidden" name="captcha_0" value="5c21440989a6f0a1103f21e92bc1873cedb637e8" required=""
+        id="id_captcha_0" autocomplete="off">
+      <input type="text" name="captcha_1" required="" id="id_captcha_1" autocapitalize="off" autocomplete="off"
+        autocorrect="off" spellcheck="false">
+    </div>
+
+    <div class="contact__actions">
+      <label for="file-load" class="custom-file-upload"></label>
+      <input id="file-load" class="contact__file-btn" type="file" name="file">
+      <button class="contact__submit" type="submit">Отправить</button>
+    </div>
+  </form>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const fileInput = document.getElementById('file-load');
+      const filePreviewContainer = document.querySelector('.contact__preview-box');
+
+      function returnFileSize(number) {
+        if (number < 1024) {
+          return number + "bytes";
+        } else if (number > 1024 && number < 1048576) {
+          return (number / 1024).toFixed(1) + "KB";
+        } else if (number > 1048576) {
+          return (number / 1048576).toFixed(1) + "MB";
+        }
+      }
+
+      fileInput.addEventListener('change', function () {
+        filePreviewContainer.innerHTML = '';
+        for (const file of fileInput.files) {
+          const filePreview = document.createElement('div');
+          filePreview.classList.add('file-preview');
+
+          const fileName = document.createElement('p');
+          fileName.textContent = file.name;
+
+          const fileSize = document.createElement('p');
+          fileSize.textContent = returnFileSize(file.size);
+
+          filePreview.appendChild(fileName);
+          filePreview.appendChild(fileSize);
+
+          filePreviewContainer.appendChild(filePreview);
+        }
+      });
+    });
+
+  </script>
+</section>
 {% endblock %}
