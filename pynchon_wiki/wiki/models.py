@@ -10,11 +10,13 @@ User = get_user_model()
 
 CHOICES_CHAPTER = [
     ('Другое', 'Другое'), ('Раздел 1', 'Раздел 1'),
+    ('V Раздел 1', 'V Раздел 1'), ('Раздел 4', 'Раздел 4'),
+    ('V Раздел 4', 'V Раздел 4'), ('V Раздел 5', 'V Раздел 5'),
     ('Раздел 1 (статья 1)', 'Раздел 1 (статья 1)'),
+    ('V Раздел 1 (статья 1)', 'V Раздел 1 (статья 1)'),
     ('Раздел 1 (статья 2)', 'Раздел 1 (статья 2)'),
-    ('Раздел 2', 'Раздел 2'), ('Раздел 3', 'Раздел 3'),
-    ('Раздел 4', 'Раздел 4'), ('Раздел 5', 'Раздел 5'),
-    ('Раздел 6', 'Раздел 6'), ('Раздел 7', 'Раздел 7'),
+    ('V Раздел 1 (статья 2)', 'V Раздел 1 (статья 2)'),
+    ('Раздел 5', 'Раздел 5'), ('Раздел 7', 'Раздел 7'),
     ('Авторы', 'Авторы'), ('Томас Пинчон', 'Томас Пинчон'),
     ('Запланированные мероприятия', 'Запланированные мероприятия'),
     ('Записи встреч', 'Записи встреч'), ('Другие книги', 'Другие книги'),
@@ -60,6 +62,8 @@ class Chapter(BaseModel):
     )
     pov = RichTextField(
         verbose_name='POV',
+        blank=True,
+        null=True
     )
     book_part = models.PositiveIntegerField(
         verbose_name='Часть книги',
@@ -89,6 +93,11 @@ class Chapter(BaseModel):
         max_length=50,
         null=True,
         blank=True
+    )
+    sort = models.IntegerField(
+        verbose_name='Сортировка',
+        blank=True,
+        null=True
     )
 
     class Meta:
@@ -127,6 +136,11 @@ class ChapterLink(BaseModel):
 class Comment(BaseNameModel):
     """ Модель комментариев. """
 
+    comment_link = models.IntegerField(
+        'Cвязь с другим примечанием',
+        blank=True,
+        null=True
+    )
     comment_text = RichTextField(
         'Текст примечания'
     )
@@ -137,7 +151,8 @@ class Comment(BaseNameModel):
         upload_to='comments/'
     )
     book = models.ForeignKey(
-        Book, verbose_name='Книга',
+        Book,
+        verbose_name='Книга',
         related_name='comments',
         on_delete=models.SET_NULL,
         blank=True,
@@ -152,10 +167,14 @@ class Comment(BaseNameModel):
         null=True
     )
     page_number_by_2012 = models.PositiveIntegerField(
-        verbose_name='Нумерация глав в старом издании'
+        verbose_name='Нумерация глав в старом издании',
+        blank=True,
+        null=True
     )
     page_number_by_2021 = models.PositiveIntegerField(
-        verbose_name='Нумерация глав в новом издании'
+        verbose_name='Нумерация глав в новом издании',
+        blank=True,
+        null=True
     )
     sort = models.PositiveBigIntegerField(
         verbose_name='Сортировка',
@@ -230,6 +249,12 @@ class TableChronology(BaseModel):
         blank=True,
         null=True
     )
+    book = models.ForeignKey(
+        Book,
+        verbose_name='Книга',
+        related_name='chronology',
+        on_delete=models.CASCADE
+    )
 
     class Meta:
         verbose_name = 'Строка таблицы хронологии'
@@ -243,6 +268,7 @@ class TableChronology(BaseModel):
 
 class Article(BaseNameModel):
     """ Модель статей. """
+
     name = models.CharField(
         'Название',
         max_length=255,
@@ -306,6 +332,14 @@ class Article(BaseNameModel):
 
 class CircleTableCharacters(BaseNameModel):
     """ Модель круга в таблице персонажей."""
+
+    book = models.ForeignKey(
+        Book,
+        verbose_name='Книга',
+        related_name='characters',
+        on_delete=models.CASCADE
+    )
+
     class Meta:
         verbose_name = 'Круг в таблице персонажей'
         verbose_name_plural = 'Круги в таблице персонажей'
@@ -314,6 +348,7 @@ class CircleTableCharacters(BaseNameModel):
 
 class TableСharacters(BaseNameModel):
     """ Модель таблицы персонажей."""
+
     value_name = models.TextField(
         'Имя в оригинале и значение',
         null=True,

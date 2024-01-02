@@ -66,7 +66,8 @@ class ChapterAdmin(ImportExportModelAdmin):
         'book',
         'book_part',
         'preview',
-        'get_links'
+        'get_links',
+        'sort'
     )
     search_fields = ('number',)
     list_filter = ('number', 'book')
@@ -84,7 +85,8 @@ class ChapterAdmin(ImportExportModelAdmin):
         }),
         ('Описание', {
             'classes': ('wide', 'extrapretty'),
-            'fields': ('description', 'pov', 'summary', 'interpretation',)
+            'fields': ('description', 'pov', 'summary',
+                       'interpretation', 'sort')
         }),
         ('Изображение', {
             'classes': ('wide', 'extrapretty'),
@@ -143,7 +145,6 @@ class CommentResource(resources.ModelResource):
         fields = (
             'id',
             'page_number_by_2012',
-            'page_number_by_2021',
             'name',
             'comment_text',
             'image',
@@ -155,8 +156,9 @@ class CommentResource(resources.ModelResource):
 class CommentAdmin(ImportExportModelAdmin):
     resource_classes = [CommentResource]
     list_display = (
-        'name', 'comment_text', 'page_number_by_2012', 'sort', 'preview',
-        'get_links')
+        'pk', 'name', 'comment_text', 'page_number_by_2012', 'sort',
+        'comment_link', 'preview', 'get_links'
+    )
     inlines = (InlineCommentLink,)
     search_fields = ('comment_text',)
     list_filter = ('book', 'chapter', 'page_number_by_2012', 'sort')
@@ -169,7 +171,7 @@ class CommentAdmin(ImportExportModelAdmin):
         }),
         ('Описание', {
             'classes': ('wide', 'extrapretty'),
-            'fields': ('name', 'comment_text',)
+            'fields': ('name', 'comment_text', 'comment_link',)
         }),
         ('Данные по книге', {
             'classes': ('wide', 'extrapretty'),
@@ -213,7 +215,9 @@ class TableChronologyResource(resources.ModelResource):
 @admin.register(TableChronology)
 class TableChronologyAdmin(ImportExportModelAdmin):
     resource_classes = [TableChronologyResource]
-    list_display = ('pk', 'created_at', 'description', 'sort', 'event_type')
+    list_display = (
+        'pk', 'created_at', 'description', 'sort', 'event_type', 'book'
+    )
     search_fields = ('created_at', 'description', 'sort', 'event_type')
     readonly_fields = ('created_at',)
 
@@ -224,7 +228,7 @@ class TableChronologyAdmin(ImportExportModelAdmin):
         }),
         ('Описание', {
             'classes': ('wide', 'extrapretty'),
-            'fields': ('date', 'sort', 'description', 'event_type')
+            'fields': ('date', 'sort', 'description', 'event_type', 'book')
         }),
     )
 
@@ -282,5 +286,5 @@ class CircleTableCharactersResource(resources.ModelResource):
 @admin.register(CircleTableCharacters)
 class CircleTableCharactersAdmin(ImportExportModelAdmin):
     resource_classes = [CircleTableCharactersResource]
-    list_display = ('id', 'name')
+    list_display = ('id', 'name', 'book',)
     search_fields = ('name',)

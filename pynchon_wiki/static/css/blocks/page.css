@@ -234,9 +234,9 @@ a {
 }
 
 .article_transform {
-  width: 100%;
+  width: 100% !important;
   height: 130px;
-  overflow: hidden;
+  overflow-y: hidden;
 }
 
 .help_text {
