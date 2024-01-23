@@ -5,12 +5,12 @@
   Хронология
 {% endblock %}
 {% block content %}
-  <section class="chapters-nav">
+  <section class="chapters-nav v">
     {% include 'includes/form_search.html' %}
     {% include 'includes/v_chapters.html' %}
     <h1 class="chapters-nav__title chapter-title">Хронология</h1>
     <br><br><br>
-    <section class="chronology">
+    <section class="chronology v">
       <div class="chronology__slider-container">
         <div class="swiper-button-prev chronology__prev-btn"></div>
           <div class="swiper chronology__slider">
@@ -28,7 +28,7 @@
         <p class="chronology__fact body-text-l" data-id="{{ event.id }}">{{ event.description }}</p>
       {% endfor %}
     </section>
-    <section class="chronology-description">
+    <section class="chronology-description v">
       <h2 class="chronology-description__subtitle title">В хронологической таблице единым списком указаны три типа дат:</h2>
       <p class="help_text">* для поиска события воспользуйтесь строкой "Поиск"</p>
       <ul class="chronology-description__facts">

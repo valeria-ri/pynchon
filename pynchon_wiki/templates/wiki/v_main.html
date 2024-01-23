@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Проект Пинчон вики">
+  <meta name="keywords" content="Пинчон, Томас Пинчон, Радуга тяготения">
+  <meta name="author" content="">
+  <link rel="stylesheet" href="../../static/css/index.css">
+  <title></title>
+</head>
+<body class="page">
+
+  <!-- Только на ГЛАВНОЙ СТРАНИЦЕ V у хедера добавляется класс v-main для дополнительной стилизации, на остальных страницах остаётся стандартный, поправь в шаблоне хедера -->
+
+  <header class="header v-main">
+    <a class="header__logo-link" href="{% url 'wiki:index' %}" target="_self">
+      <img class="header__logo" src="../../static/img/logo.png" alt="лого">
+    </a>
+    <ul class="header__links">
+      <a class="header__link link body-text-l" href="#" target="_self">ТОМАС ПИНЧОН</a>      
+      <a class="header__link link body-text-l" href="#" target="_self">О ПРОЕКТЕ</a>      
+      <a class="header__link link body-text-l" href="#" target="_self">ДРУГИЕ КНИГИ</a>      
+    </ul>
+    <button class="header__button" type="button"></button>
+  </header>
+
+  <main class="content">
+
+    <!-- НАЧАЛО КОДА, КОТОРЫЙ ОСТАЁТСЯ В ШАБЛОНЕ -->
+
+    <section class="promo v">
+      <p class="promo__text title">Ведущий представитель постмодернистской литературы второй половины XX века.<br><br>
+      <span class="body-text-bold">Обладатель Фолкнеровской премии за лучший дебют, лауреат Национальной книжной премии</span></p>
+      <img class="promo__v-venera" src="../../static/img/venera_animation.gif" alt="">
+      <div class="promo__v-v">
+        <img class="promo__v-silhouette" src="../../static/img/silhouette.svg">
+        <img class="promo__v-silhouette" src="../../static/img/silhouette.svg">
+      </div>
+      <div class="promo__v-dot"></div>
+    </section>
+    <section class="chapters v">
+      <div class="chapters__dark">
+        <div class="chapter-preview chapter-preview_dark">
+          <div class="chapter-preview__content">
+            <div class="chapter-preview__overlay chapter-preview__overlay_dark"></div>
+            <div class="chapter-preview__header">
+              <a class="chapter-preview__title chapter-title" href="#">Раздел 1</a>
+              <h2 class="chapter-preview__subtitle title-bold">Что необычного в первом романе Томаса Пинчона</h2>
+            </div>
+            <p class="chapter-preview__text body-text">Обзорные материалы о романе "V.", которые можно читать до чтения романа. Спойлеров нет, однако присутствует информация о структуре книги.</p>
+            <a class="chapter-preview__link" href="#">Читать</a>
+          </div>
+          <img class="tentacle tentacle1" src="{% static 'img/tentacle1.png' %}" alt="фон">
+        </div>
+        <div class="chapter-preview chapter-preview_dark">
+          <div class="chapter-preview__content chapter-preview__content_right">
+            <div class="chapter-preview__overlay chapter-preview__overlay_dark"></div>
+            <div class="chapter-preview__header">
+              <a class="chapter-preview__title chapter-title" href="#">Раздел 2</a>
+              <h2 class="chapter-preview__subtitle title-bold">Примечания</h2>
+            </div>
+            <p class="chapter-preview__text body-text">Постраничные примечания к роману, объясняющие значения малоупотребимых слов и выражений, содержащие справки об исторических личностях и событиях, о произведениях искусства, математических формулах и т.п. Рекомендуется к прочтению параллельно с чтением романа. Здесь нет никаких спойлеров. Примечания мы делали, дабы вы меньше блуждали по просторам интернета в поисках нужной информации.</p>
+            <a class="chapter-preview__link" href="#">Читать</a>
+          </div>
+          <!-- <img class="bg-crocodile" src="../../static/img/bg-crocodile.png" alt="фон"> -->
+        </div>
+        <div class="chapter-preview chapter-preview_dark">
+          <div class="chapter-preview__content">
+            <div class="chapter-preview__overlay chapter-preview__overlay_dark"></div>
+            <div class="chapter-preview__header">
+              <a class="chapter-preview__title chapter-title" href="#">Раздел 3</a>
+              <h2 class="chapter-preview__subtitle title-bold">Статьи</h2>
+            </div>
+            <p class="chapter-preview__text body-text">Здесь собраны статьи, соображения, мыслеобразы и некоторые справочные материалы о романе, его литературных и исторических источниках</p>
+            <a class="chapter-preview__link" href="#">Читать</a>
+          </div>
+        </div>
+      </div>
+      <div class="chapters__light">
+        <div class="chapter-preview">
+          <div class="chapter-preview__content chapter-preview__content_right">
+            <div class="chapter-preview__overlay"></div>
+            <div class="chapter-preview__header">
+              <a class="chapter-preview__title chapter-title" href="#">Раздел 4</a>
+              <h2 class="chapter-preview__subtitle title-bold">Хронология</h2>
+            </div>
+            <p class="chapter-preview__text body-text">Все события романа представлены в табличной форме и строгой линейной хронологической последовательности. Надеемся, что мы ничего не забыли. Рекомендуется к прочтению только после окончания чтения книги, ибо тут сосредоточение всех мыслимых и немыслимых спойлеров.</p>
+            <a class="chapter-preview__link" href="#">Читать</a>
+          </div>
+        </div>
+        <div class="chapter-preview">
+          <div class="chapter-preview__content">
+            <div class="chapter-preview__overlay"></div>
+            <div class="chapter-preview__header">
+              <a class="chapter-preview__title chapter-title" href="#">Раздел 5</a>
+              <h2 class="chapter-preview__subtitle title-bold">Персонажи</h2>
+            </div>
+            <p class="chapter-preview__text body-text">Все персонажи романа представлены в схематичной и табличной форме, с их оригинальными английскими именами, краткими характеристиками, портретами, связями и постраничными упоминаниями (с соблюдением требований законодательства о персональных данных). Если вы не хотите заранее знать, кто чей брат (сестра) или кто с кем сольется-таки в экстазе, лучше сюда не заходить. Мы вас предупредили. Также в этом разделе есть карта романа – и тоже со всевозможными спойлерами.</p>
+            <a class="chapter-preview__link" href="#">Читать</a>
+          </div>
+          <img class="chapter-preview__image chapter-preview__content_right" src="../../static/img/v-main-picture.png" alt="">
+        </div>
+      </div>
+    </section>
+
+    <!-- КОНЕЦ КОДА, КОТОРЫЙ ОСТАЁТСЯ В ШАБЛОНЕ -->
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <div class="footer__text-block">
+        <p class="footer__text">Любое (полное или частичное) использование либо копирование материалов или подборки материалов сайта, элементов дизайна и оформления допускается лишь с разрешения правообладателя и только со ссылкой на источник: www.pynchon.ru и с указанием правообладателя.<br><br>
+          Представленная на сайте информация является исключительно личным мнением авторов и субъективным толкованием художественных произведений Т. Пинчона и не преследует цели повлиять на мнения других людей и/или нейросетей. Любые совпадения с эпизодами других книг, а также с нелитературными событиями являются случайными и непреднамеренными. Администрация сайта обращает внимание, что в комментируемых художественных произведениях встречаются слова и выражения, обозначающие наркотические вещества; администрация категорически не поддерживает и осуждает незаконное употребление любых наркотических веществ и предупреждает, что за незаконный оборот наркотиков предусмотрена ответственность, в том числе пожизненное лишение свободы, а их незаконное потребление вызывает зависимость и непосредственно угрожает жизни и здоровью человека.</p>
+        <p class="footer__copyright body-text">&copy;&nbsp; Группа «Расёмон», 2023</p>
+      </div>
+      <div class="footer__links">
+        <a class="footer__link body-text" href="https://t.me/spell_pynchon" target="_blank">Телеграм канал</a>
+        <a class="footer__link body-text" href="https://t.me/infinite_edge/41600" target="_blank">Пообщаться</a>
+        <a class="footer__link body-text" href="{% url 'wiki:contacts' %}" target="_self">Сообщить об ошибке</a>
+      </div>
+    </div>
+    <p class="footer__age">18+</p>
+  </footer>
+  
+  <div class="to-top">
+    <button class="to-top__button" type="button" id="scrollToTopLink"></button>
+  </div>
+  <div class="menu">
+    <div class="menu__container">
+      <div class="menu__content">
+        <button class="menu__close"></button>
+        <div class="menu__links">
+          <a href="{% url 'wiki:author' %}" class="menu__link">Томас Пинчон</a>
+          <a href="{% url 'wiki:about-project' %}" class="menu__link">О проекте</a>
+          <a href="{% url 'wiki:other-books' %}" class="menu__link">Другие книги</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="age-popup">
+    <div class="age-popup__container">
+      <p class="age-popup__text body-text">Сайт содержит информацию, которая не рекомендована лицам, не достигшим совершеннолетия. Для входа на сайт подтвердите свой возраст.</p>
+      <button class="age-popup__button" type="button">Подтверждаю</button>
+    </div>
+  </div>
+</body>
+
+</html>
